@@ -1,0 +1,5 @@
+FROM dong77/ubuntu1404_dev
+
+RUN git clone https://github.com/dong77/nextex.git
+RUN cd nextex/codebase && ./gradlew build && cd ../..
+RUN rm -rf nextex
