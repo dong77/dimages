@@ -12,10 +12,10 @@ RUN apt-get install -y \
     python-software-properties     
           
           
-RUN apt-repository -y ppa:webupd8team/java 
-RUN apt-repository -y ppa:git-core/ppa      
-
+RUN add-apt-repository -y ppa:webupd8team/java 
+RUN add-apt-repository -y ppa:git-core/ppa      
 RUN apt-get update -y  
+
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections     
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections       
 RUN apt-get install -y \
