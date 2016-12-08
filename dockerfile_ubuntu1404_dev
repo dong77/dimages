@@ -19,7 +19,7 @@ RUN apt-get update -y
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections     
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections       
 RUN apt-get install -y \
-    oracle-java8-installer 
+    oracle-java8-installer \
     curl \
     lsb-release \
     openssh-server \
@@ -29,6 +29,7 @@ RUN apt-get install -y \
     rsync \
     git
 
+RUN apt-get autoremove -y
 
 # setup the vagrant user
 RUN if ! getent passwd vagrant; then useradd -d /home/vagrant -m -s /bin/bash vagrant; fi \
@@ -49,12 +50,4 @@ RUN mkdir -p /home/vagrant/.ssh \
 
 # don't clean packages, we might be using vagrant-cachier
 RUN rm /etc/apt/apt.conf.d/docker-clean
-
-# run sshd in the foreground
-CMD /usr/sbin/sshd -D \
-    -o UseDNS=no\
-    -o UsePAM=no\
-    -o PasswordAuthentication=yes\
-    -o UsePrivilegeSeparation=no\
-    -o PidFile=/tmp/sshd.pid
 
