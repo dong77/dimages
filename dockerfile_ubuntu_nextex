@@ -3,5 +3,3 @@ FROM dong77/ubuntu_dev
 RUN git clone https://github.com/dong77/nextex.git
 RUN cd nextex/codebase && gradle build && cd ../..
 RUN rm -rf nextex
-
-RUN apt-get install -y lsb-release
