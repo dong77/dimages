@@ -43,7 +43,7 @@ RUN \
 
 # ensure we have the en_US.UTF-8 locale available
 RUN apt-get update -y 
-RUN apt-get install -y \
+RUN apt-get --allow-unauthenticated install -y \
     software-properties-common \
     python-software-properties     
           
@@ -53,7 +53,7 @@ RUN apt-get update -y
 
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections     
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections       
-RUN apt-get install -y \
+RUN apt-get --allow-unauthenticated install -y \
     oracle-java8-installer \
     curl \
     scala \
